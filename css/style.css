@@ -37,6 +37,7 @@
 .general__info-data {
   font-size: 1.6rem;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 *,
@@ -75,10 +76,11 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow: hidden;
 }
 
 .loader__img {
-  width: 100px;
+  width: 70px;
 }
 
 .hidden {
@@ -142,6 +144,7 @@ section {
 }
 
 .countries__header-title {
+  font-size: 1.7rem;
   font-weight: 500;
   color: #fff;
 }
@@ -217,6 +220,10 @@ section {
   cursor: pointer;
 }
 
+.countries {
+  overflow-x: auto;
+}
+
 .countries__table {
   margin: 0 auto;
   border-collapse: collapse;
@@ -268,5 +275,30 @@ thead {
   height: 60px;
   background-color: #6163a0;
   color: #fff;
+}
+
+@media screen and (min-width: 375px) {
+  .countries__header-title {
+    font-size: 2rem;
+  }
+  .countries__header-btn {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .loader__img {
+    width: 120px;
+  }
+  .countries__table-head {
+    font-size: 1.8rem;
+  }
+  .countries__table-flag-img {
+    width: 60px;
+    height: 45px;
+  }
+  td {
+    font-size: 1.4rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

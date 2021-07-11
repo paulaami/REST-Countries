@@ -1,0 +1,10 @@
+@media screen and (min-width: 375px) {
+ .countries__header {
+  &-title {
+   font-size: 2rem;
+  }
+  &-btn {
+   font-size: 1.3rem;
+  }
+ }
+}

@@ -84,7 +84,7 @@ const getInfo = () => {
  
           const populationNr = populationArr.map(Number).reduce((x, y) => x + y)
           const avgPop = populationNr / populationArr.length;
-          populationInfo.innerText = avgPop.toFixed();
+          populationInfo.innerText = `${avgPop.toFixed()} mln`
          }
          showPopulation();
 

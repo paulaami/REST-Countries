@@ -31,8 +31,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   &__img {
-    width: 100px;
+    width: 70px;
   }
 }
 
@@ -84,6 +85,7 @@ section {
   }
 
   &-title {
+    font-size: 1.7rem;
     font-weight: 500;
     color: $white;
   }
@@ -143,6 +145,10 @@ section {
   }
 }
 
+.countries {
+  overflow-x: auto
+}
+
 .countries__table {
   margin: 0 auto;
   border-collapse: collapse;
@@ -196,3 +202,7 @@ thead {
   background-color: $blue;
   color: $white;
 }
+
+
+@import './media-S';
+@import './media-M';
