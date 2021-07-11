@@ -108,6 +108,15 @@ section {
   padding: 40px 10px;
   max-width: 900px;
 
+  &-warn {
+    display: none;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: red;
+  }
+
   &-main {
     display: flex;
     align-items: center;

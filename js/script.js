@@ -45,20 +45,26 @@ const getCountries = () => {
                 const btnCheck = document.querySelector('.search__box-range-btn');
 
                 const checkValue = () => {
+                    const warnText = document.querySelector('.search__box-warn')
                     if (minPopulation.value === '' || maxPopulation.value === '') {
-                        alert('Wszystkie pola muszą być uzupełnione!')
+                        warnText.style.display = 'block';
+                        warnText.textContent = 'Complete all fields!';
                     } else {
                         checkPopulation();
+                        warnText.style.display = 'none';
                     }
 
                     if (maxPopulation.value < minPopulation.value) {
-                        alert('Podaj poprawny przedział');
+                        warnText.style.display = 'block';
+                        warnText.textContent = 'Enter the correct range';
                     } else {
                         checkPopulation();
+                        warnText.style.display = 'none';
                     }
                 }
 
                 const checkPopulation = () => {
+
                     let minValue = Number(minPopulation.value);
                     let maxValue = Number(maxPopulation.value);
                     let j = 0;
@@ -75,6 +81,7 @@ const getCountries = () => {
                             }
                         }
                     });
+                    warnText.style.display = 'none';
                 }
 
                 btnCheck.addEventListener('click', () => {
@@ -117,7 +124,7 @@ const getCountries = () => {
             //SORT TABLE
 
             function sortTableByColumn(table, column, asc = true) {
-                const dirModifier = asc ? 1 : -1;
+                const direction = asc ? 1 : -1;
 
                 // Sort each row
                 const sortedRows = rows.sort((a, b) => {
@@ -129,7 +136,7 @@ const getCountries = () => {
                         bColText = parseFloat(bColText)
                     }
 
-                    return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+                    return aColText > bColText ? (1 * direction) : (-1 * direction);
                 });
 
                 // Remove all existing TRs from the table
