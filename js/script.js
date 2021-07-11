@@ -47,24 +47,19 @@ const getCountries = () => {
                 const checkValue = () => {
                     const warnText = document.querySelector('.search__box-warn')
                     if (minPopulation.value === '' || maxPopulation.value === '') {
-                        warnText.style.display = 'block';
-                        warnText.textContent = 'Complete all fields!';
+                        alert('Wszystkie pola muszą być uzupełnione!')
                     } else {
                         checkPopulation();
-                        warnText.style.display = 'none';
                     }
 
                     if (maxPopulation.value < minPopulation.value) {
-                        warnText.style.display = 'block';
-                        warnText.textContent = 'Enter the correct range';
+                        alert('Podaj poprawny przedział');
                     } else {
                         checkPopulation();
-                        warnText.style.display = 'none';
                     }
                 }
 
                 const checkPopulation = () => {
-
                     let minValue = Number(minPopulation.value);
                     let maxValue = Number(maxPopulation.value);
                     let j = 0;
@@ -81,7 +76,6 @@ const getCountries = () => {
                             }
                         }
                     });
-                    warnText.style.display = 'none';
                 }
 
                 btnCheck.addEventListener('click', () => {
