@@ -1,10 +1,16 @@
+window.addEventListener("load", function () {
+    const loader = document.querySelector(".loader");
+    loader.className += " hidden"; // class "loader hidden"
+});
+
 const getCountries = () => {
-    
+    "use strict";
+
     fetch('https://restcountries.eu/rest/v2/all?fields=name;currencies;languages;population;area;flag')
-    .then(res => res.json())
-    .then(data => {
-        
-        const tableBody = document.querySelector('.countries__table-body');
+        .then(res => res.json())
+        .then(data => {
+
+            const tableBody = document.querySelector('.countries__table-body');
 
             for (let i = 0; i < data.length; i++) {
                 const row = `<tr>
@@ -23,23 +29,36 @@ const getCountries = () => {
             }
 
             const rows = Array.from(tableBody.querySelectorAll('tr'));
-            const order = document.querySelectorAll('.order');
-            const thead = document.querySelector('thead');
-            const th = thead.querySelectorAll('.sortable');
 
             rows.forEach((row) => {
                 row.className = 'order';
             });
             // CHECK POPULATION IN A GIVEN RANGE
 
+            const order = document.querySelectorAll('.order');
+            const thead = document.querySelector('thead');
+            const th = thead.querySelectorAll('.sortable');
+
             const populationRange = () => {
                 const minPopulation = document.querySelector('#search__box-range-min');
                 const maxPopulation = document.querySelector('#search__box-range-max');
                 const btnCheck = document.querySelector('.search__box-range-btn');
-                const thead = document.querySelector('thead');
-                const order = document.querySelectorAll('.order');
 
-                btnCheck.addEventListener('click', () => {
+                const checkValue = () => {
+                    if (minPopulation.value === '' || maxPopulation.value === '') {
+                        alert('Wszystkie pola muszą być uzupełnione!')
+                    } else {
+                        checkPopulation();
+                    }
+
+                    if (maxPopulation.value < minPopulation.value) {
+                        alert('Podaj poprawny przedział');
+                    } else {
+                        checkPopulation();
+                    }
+                }
+
+                const checkPopulation = () => {
                     let minValue = Number(minPopulation.value);
                     let maxValue = Number(maxPopulation.value);
                     let j = 0;
@@ -56,9 +75,12 @@ const getCountries = () => {
                             }
                         }
                     });
+                }
+
+                btnCheck.addEventListener('click', () => {
+                    checkValue();
                 })
             }
-
             populationRange();
 
 
@@ -66,10 +88,8 @@ const getCountries = () => {
 
             const searchValue = () => {
                 const searchInput = document.querySelector('#search__box-main-input');
-                const thead = document.querySelector('thead');
-                const order = document.querySelectorAll('.order');
 
-                searchInput.addEventListener('keyup', () => {
+                const startSearch = () => {
                     const inputValue = searchInput.value.toUpperCase().trim();
                     let j = 0;
 
@@ -85,6 +105,10 @@ const getCountries = () => {
                             }
                         }
                     });
+                }
+
+                searchInput.addEventListener('keyup', () => {
+                    startSearch();
                 });
             }
             searchValue();
@@ -125,7 +149,6 @@ const getCountries = () => {
             th.forEach((headerCell, index) => {
                 headerCell.addEventListener("click", () => {
                     const tableElement = headerCell.closest('table');
-
                     const headerIndex = index;
                     const currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
@@ -134,6 +157,6 @@ const getCountries = () => {
             });
 
         })
-    
+
 }
 getCountries();
