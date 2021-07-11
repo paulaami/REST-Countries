@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Aplikacja wyszukująca dane o krajach</title>
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+ <header class="countries__header">
+  <div class="countries__header-container">
+   <h1 class="countries__header-title">Countries of World</h1>
+   <a href="index.html" class="countries__header-btn">Back</a>
+  </div>
+ </header>
+
+ <main>
+  <section>
+   <div class="general__info">
+    <h3 class="general__info-heading">Total number of countries</h3>
+    <p class="countries__number general__info-data"></p>
+    <h3 class="general__info-heading">Top 5 most common languages</h3>
+    <p class="countries_lang general__info-data"></p>
+    <h3 class="general__info-heading">Top 5 most common currencies</h3>
+    <p class="countries__currency general__info-data"></p>
+    <h3 class="general__info-heading">Average population</h3>
+    <p class="countries__population general__info-data"></p>
+    <h3 class="general__info-heading">Average area</h3>
+    <p class="countries__area general__info-data"></p>
+    <h3 class="general__info-heading">Average number of neighbours</h3>
+    <p class="countries__neighbours general__info-data"></p>
+   </div>
+  </section>
+ </main>
+
+ <script type="module" src="js/dashboard.js"></script>
+</body>
+
+</html>

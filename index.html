@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplikacja wyszukująca dane o krajach</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <header class="countries__header">
+    <div class="countries__header-container">
+      <h1 class="countries__header-title">Countries of World</h1>
+      <a href="dashboard.html" class="countries__header-btn">Additional info</a>
+    </div>
+  </header>
+
+  <nav>
+    <div class="search__box">
+
+      <div class="search__box-main">
+        <label class="sr-only" for="search__box-main-input" class="search__box-main-label">Search</label>
+        <input type="search" id="search__box-main-input" class="search__box-main-input" placeholder="Search"
+          aria-label="Enter your search information" />
+      </div>
+
+      <div class="search__box-range">
+
+        <h2 class="search__box-range-title">Check countries population in a given range</h2>
+        <label class="sr-only" for="search__box-range-min">Minimalna populacja</label>
+        <input type="number" id="search__box-range-min" class="search__box-range-min" placeholder="Min number"
+          aria-label="Enter the minimum population number" />
+
+        <label class="sr-only" for="search__box-range-max">Maxymalna populacja</label>
+        <input type="number" id="search__box-range-max" class="search__box-range-max" placeholder="Max number"
+          aria-label="Enter the maximum population number" />
+        <button class="search__box-range-btn">Check range</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="countries">
+        <table class="countries__table">
+          <thead>
+            <tr>
+              <th class="sortable countries__table-head">Name</th>
+              <th class="sortable countries__table-head">Currency</th>
+              <th class="sortable countries__table-head">Language</th>
+              <th class="sortable countries__table-head">Population</th>
+              <th class="sortable countries__table-head">Area</th>
+              <th class="countries__table-head">Flag</th>
+            </tr>
+          </thead>
+
+          <tbody class="countries__table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
