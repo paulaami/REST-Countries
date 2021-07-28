@@ -1,4 +1,4 @@
-# Country information app - Paulina Miłkowska pmilkowska@onet.pl
+# Country information app 
 
 Application communicates with REST Countries API and display specific information about countries.
 
