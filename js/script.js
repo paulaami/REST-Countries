@@ -6,7 +6,8 @@ window.addEventListener("load", function () {
 const getCountries = () => {
     "use strict";
 
-    fetch('https://restcountries.eu/rest/v2/all?fields=name;currencies;languages;population;area;flag')
+    //communicate with API
+    fetch('https://restcountries.com/v2/all?fields=name,currencies,languages,population,area,flag')
         .then(res => res.json())
         .then(data => {
 
@@ -27,38 +28,39 @@ const getCountries = () => {
 
                 tableBody.innerHTML += row;
             }
-
+            //download new rows and add class
             const rows = Array.from(tableBody.querySelectorAll('tr'));
 
             rows.forEach((row) => {
                 row.className = 'order';
             });
-            // CHECK POPULATION IN A GIVEN RANGE
 
             const order = document.querySelectorAll('.order');
             const thead = document.querySelector('thead');
             const th = thead.querySelectorAll('.sortable');
 
+            // CHECK POPULATION IN A GIVEN RANGE
             const populationRange = () => {
                 const minPopulation = document.querySelector('#search__box-range-min');
                 const maxPopulation = document.querySelector('#search__box-range-max');
                 const btnCheck = document.querySelector('.search__box-range-btn');
 
+                //add validation
                 const checkValue = () => {
-                    const warnText = document.querySelector('.search__box-warn')
+
                     if (minPopulation.value === '' || maxPopulation.value === '') {
-                        alert('Wszystkie pola muszą być uzupełnione!')
+                        alert('All fields must be filled in!')
                     } else {
                         checkPopulation();
                     }
 
                     if (maxPopulation.value < minPopulation.value) {
-                        alert('Podaj poprawny przedział');
+                        alert('Specify the correct range');
                     } else {
                         checkPopulation();
                     }
                 }
-
+                //check range
                 const checkPopulation = () => {
                     let minValue = Number(minPopulation.value);
                     let maxValue = Number(maxPopulation.value);
@@ -90,6 +92,7 @@ const getCountries = () => {
             const searchValue = () => {
                 const searchInput = document.querySelector('#search__box-main-input');
 
+                //search value
                 const startSearch = () => {
                     const inputValue = searchInput.value.toUpperCase().trim();
                     let j = 0;
@@ -117,13 +120,13 @@ const getCountries = () => {
 
             //SORT TABLE
 
-            function sortTableByColumn(table, column, asc = true) {
+            function sortTable(table, column, asc = true) {
                 const direction = asc ? 1 : -1;
 
                 // Sort each row
-                const sortedRows = rows.sort((a, b) => {
-                    let aColText = a.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
-                    let bColText = b.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
+                const sortRow = rows.sort((a, b) => {
+                    let aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+                    let bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 
                     if (!isNaN(parseFloat(aColText)) && !isNaN(parseFloat(bColText))) {
                         aColText = parseFloat(aColText)
@@ -139,12 +142,12 @@ const getCountries = () => {
                 }
 
                 // Re-add the newly sorted rows
-                tableBody.append(...sortedRows);
+                tableBody.append(...sortRow);
 
                 // Remember how the column is currently sorted
                 th.forEach(el => el.classList.remove("th-sort-asc", "th-sort-desc"));
-                table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-asc", asc);
-                table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-desc", !asc);
+                table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+                table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
             }
 
             th.forEach((headerCell, index) => {
@@ -153,11 +156,13 @@ const getCountries = () => {
                     const headerIndex = index;
                     const currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
-                    sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+                    sortTable(tableElement, headerIndex, !currentIsAscending);
                 });
             });
 
-        })
+        }).catch((error) => {
+            alert('BŁĄD:', error);
+        });
 
 }
 getCountries();

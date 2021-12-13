@@ -1,6 +1,7 @@
 @import './colors';
 @import './animation';
 @import './dashboard';
+@import './mixins';
 
 *,
 *::after,
@@ -21,17 +22,18 @@ body {
 }
 
 .loader {
+  @include flex-center;
+
   position: fixed;
-  z-index: 99;
   top: 0;
   left: 0;
+  justify-content: center;
   width: 100%;
   height: 100%;
   background: $white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+  z-index: 10;
+
   &__img {
     width: 70px;
   }
@@ -46,13 +48,16 @@ a {
   text-decoration: none;
 }
 
-input, button {
+input,
+button {
   border-radius: 3px;
   border: 1px solid $light-blue;
   background-color: $white;
 }
 
-a:focus, input:focus, button:focus {
+a:focus,
+input:focus,
+button:focus {
   outline-color: $light-blue;
 }
 
@@ -66,7 +71,7 @@ section {
   height: 1px;
   width: 1px;
   overflow: hidden;
-  clip: rect(1px 1px 1px 1px); 
+  clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
 }
 
@@ -76,8 +81,8 @@ section {
   justify-content: center;
 
   &-container {
-    display: flex;
-    align-items: center;
+    @include flex-center;
+
     justify-content: space-between;
     padding: 20px 10px;
     width: 100%;
@@ -100,20 +105,21 @@ section {
 }
 
 .search__box {
-  display: flex;
+  @include flex-center;
+
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   margin: 0 auto;
   padding: 40px 10px;
   max-width: 900px;
 
   &-main {
-    display: flex;
-    align-items: center;
+    @include flex-center;
+
     justify-content: center;
     margin-bottom: 40px;
     width: 80%;
+
     &-input {
       display: block;
       width: 100%;
@@ -126,13 +132,17 @@ section {
   &-title {
     margin-bottom: 30px;
   }
-  &-min, &-max {
+
+  &-min,
+  &-max {
     width: 45%;
     padding: .6em;
   }
+
   &-min {
     margin-right: 20px;
   }
+
   &-btn {
     display: block;
     margin: 30px auto 0 auto;
@@ -157,6 +167,7 @@ section {
     padding: 0 10px;
     font-size: 1.2rem;
   }
+
   &-flag {
     background-color: $beige;
 
@@ -176,20 +187,20 @@ section {
 .th-sort-asc::after {
   content: "\2191";
 }
+
 .th-sort-desc::after {
   content: "\2193";
 }
 
 
-.th-sort-asc::after, .th-sort-desc::after {
+.th-sort-asc::after,
+.th-sort-desc::after {
   margin-left: 5px;
 }
-
 
 tr:nth-child(even) {
   background-color: $white;
 }
-
 
 td {
   text-align: center;
@@ -202,7 +213,6 @@ thead {
   background-color: $blue;
   color: $white;
 }
-
 
 @import './media-S';
 @import './media-M';
