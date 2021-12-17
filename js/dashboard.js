@@ -14,10 +14,10 @@ const getInfo = () => {
             for (let i = 0; i < data.length; i++) {
                 countriesArr.push(data[i].name);
                 langArr.push(data[i].languages[0].name);
-                currencyArr.push(data[i].currencies[0].code);
                 populationArr.push(data[i].population);
                 areaArr.push(data[i].area);
                 neighboursArr.push(data[i].borders);
+                data[i].currencies.length !== 0 ? currencyArr.push(data[i].currencies[0].code) : currencyArr == ''
             }
 
             //TOTAL NR OF COUNTRIES

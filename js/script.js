@@ -7,16 +7,19 @@ const getCountries = () => {
     "use strict";
 
     //communicate with API
-    fetch('https://restcountries.com/v2/all?fields=name,currencies,languages,population,area,flag')
+    fetch('https://restcountries.com/v2/all?fields=name,capital,languages,population,area,flag')
         .then(res => res.json())
         .then(data => {
 
             const tableBody = document.querySelector('.countries__table-body');
 
+
+
             for (let i = 0; i < data.length; i++) {
+
                 const row = `<tr>
                                 <td>${data[i].name}</td>
-                                <td>${data[i].currencies[0].code}</td>
+                                <td>${data[i].capital}</td>
                                 <td>${data[i].languages[0].name}</td>
                                 <td>${data[i].population}</td>
                                 <td>${data[i].area} km<sup>2</sup>
